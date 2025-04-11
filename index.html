@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phaser シューティングゲーム</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header {
+            background-color: #4a6bdf;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        #game-container {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Phaser シューティングゲーム</h1>
+        <p>Phaserを使ったシンプルなゲーム</p>
+    </header>
+    
+    <div id="game-container"></div>
+    
+    <footer>
+        <p>&copy; 2025 VibeCoding. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ゲーム設定
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            parent: 'game-container',
+            backgroundColor: '#3498db',
+            scene: {
+                create: create
+            }
+        };
+
+        // ゲームインスタンスを作成
+        const game = new Phaser.Game(config);
+
+        // create関数 - シーンが作成されたときに呼び出される
+        function create() {
+            // 画面中央にテキストを表示
+            const text = this.add.text(
+                400, 300, 
+                'Hello World!', 
+                { 
+                    fontSize: '64px', 
+                    fontFamily: 'Arial', 
+                    color: '#ffffff',
+                    fontWeight: 'bold',
+                    stroke: '#000000',
+                    strokeThickness: 6
+                }
+            );
+            
+            // テキストを中央揃えに
+            text.setOrigin(0.5);
+            
+            // テキストをアニメーション
+            this.tweens.add({
+                targets: text,
+                scale: { from: 0.5, to: 1 },
+                duration: 1000,
+                ease: 'Bounce.Out',
+                yoyo: true,
+                repeat: -1,
+                repeatDelay: 1000
+            });
+        }
+    </script>
+</body>
+</html>
